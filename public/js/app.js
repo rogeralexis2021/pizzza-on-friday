@@ -605,9 +605,11 @@
     mk = code;
     store.set('andara.market', mk);
     bag = store.get('andara.bag.' + mk, []);
-    const u = new URL(location.href);
-    u.searchParams.set('m', mk);
-    history.replaceState(null, '', u);
+    try {
+      const u = new URL(location.href);
+      u.searchParams.set('m', mk);
+      history.replaceState(null, '', u);
+    } catch (e) { /* sandboxed preview: keep the URL as is */ }
     closeModal();
     renderChrome();
     render(true);
