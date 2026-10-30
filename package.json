@@ -1,0 +1,11 @@
+{
+  "name": "andara",
+  "private": true,
+  "version": "1.0.0",
+  "description": "ANDARA — handmade Colombian leather shoes for New Zealand and Hungary. E-Business final project, Universidad de Medellín.",
+  "scripts": {
+    "images": "node scripts/fetch-images.mjs",
+    "start": "npx --yes serve public -l 3000"
+  },
+  "engines": { "node": ">=18" }
+}
