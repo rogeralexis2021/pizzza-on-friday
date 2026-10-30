@@ -1,0 +1,5 @@
+{
+  "buildCommand": "node scripts/fetch-images.mjs",
+  "outputDirectory": "public",
+  "cleanUrls": true
+}
