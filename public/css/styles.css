@@ -518,8 +518,16 @@ body.is-checkout .announce, body.is-checkout .site-header, body.is-checkout .sit
   .logo-word { font-size: 20px; letter-spacing: .32em; margin-right: -.32em; }
   .logo-sub { display: none; }
   .switch:not(.switch--drawer) .short { display: none; }
-  .grid3 { grid-template-columns: 1fr; }
-  .card-media { aspect-ratio: 4 / 4.4; }
+  .grid3 { grid-template-columns: 1fr 1fr; gap: 28px 12px; }
+  .card-hover { display: none; }
+  .card-row { flex-direction: column; gap: 2px; }
+  .card-row h3 { font-size: 17px; }
+  .card-body { padding-top: 10px; }
+  .card-body .muted { font-size: 12px; }
+  .tag { top: 8px; left: 8px; padding: 4px 6px; font-size: 9px; }
+  .rating { gap: 6px; font-size: 12px; }
+  .stars { font-size: 10px; letter-spacing: 1px; }
+  .card-media { aspect-ratio: 4 / 5; }
   .hero { min-height: 78vh; }
   .announce span:not(:first-child), .announce i { display: none; }
   .tool-head { grid-template-columns: 1fr; }

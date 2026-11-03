@@ -11,7 +11,7 @@ window.ANDARA = (function () {
   ];
 
   const nz = {
-    code: 'nz', htmlLang: 'en-NZ', label: 'NZ · English', short: 'NZ · EN',
+    code: 'nz', htmlLang: 'en-NZ', homeTitle: 'ANDARA — Leather shoes, handmade in Colombia', label: 'NZ · English', short: 'NZ · EN',
     currency: 'NZD', sizeSystem: 'UK',
     sizes: [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12],
     defaultSize: 9,
@@ -263,7 +263,7 @@ window.ANDARA = (function () {
   };
 
   const hu = {
-    code: 'hu', htmlLang: 'hu', label: 'HU · Magyar', short: 'HU · HU',
+    code: 'hu', htmlLang: 'hu', homeTitle: 'ANDARA — Kézzel készült kolumbiai bőrcipők', label: 'HU · Magyar', short: 'HU · HU',
     currency: 'HUF', sizeSystem: 'EU',
     sizes: [39, 40, 41, 42, 43, 44, 45, 46],
     defaultSize: 43,

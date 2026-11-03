@@ -309,7 +309,7 @@
     main.dataset.view = key;
     $$('[data-route]').forEach(a => a.setAttribute('aria-current', a.dataset.route === key ? 'page' : 'false'));
     document.body.classList.toggle('is-checkout', key === 'checkout');
-    document.title = key === 'home' ? 'ANDARA — Leather shoes, handmade in Colombia' : key === 'checkout' ? `${T().checkout.crumbs[3]} — ANDARA` : `${T().nav[key]} — ANDARA`;
+    document.title = key === 'home' ? T().homeTitle : key === 'checkout' ? `${T().checkout.crumbs[3]} — ANDARA` : `${T().nav[key]} — ANDARA`;
     if (key === 'checkout') { if (co && co.step === 'done' && !keepScroll) co = null; drawCheckout(); }
     if (key === 'ai') { initFitFinder(params.get('p')); initChat(); }
     if (key === 'market') requestAnimationFrame(() => $$('.bar-t span').forEach(b => b.classList.add('in')));
