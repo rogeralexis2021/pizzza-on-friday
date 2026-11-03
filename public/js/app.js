@@ -551,10 +551,193 @@
       if (r) { bag.splice(+r.dataset.remove, 1); store.set('andara.bag.' + mk, bag); updateBagCount(); openBag('bag'); return; }
       const s = e.target.closest('[data-bag]');
       if (s) {
-        if (s.dataset.bag === 'done') { bag = []; store.set('andara.bag.' + mk, bag); updateBagCount(); }
-        openBag(s.dataset.bag);
+        if (s.dataset.bag === 'pay') openCheckout();
+        else openBag(s.dataset.bag);
       }
     };
+  }
+
+  /* ---------- demo checkout (no real payment) ---------- */
+  let co = null;
+
+  function openCheckout() {
+    if (!bag.length) return openBag();
+    const c = T().checkout;
+    co = { step: 0, d: {}, method: c.methods[0].id, error: '', card: {} };
+    drawCheckout();
+  }
+
+  function totals() {
+    const c = T().checkout;
+    const sub = bag.reduce((s, i) => s + prod(i.id).price[mk], 0);
+    const tax = Math.round(sub * c.taxRate * 100) / 100;
+    const fee = co.method === 'cod' ? c.codFee : 0;
+    return { sub, tax, fee, total: sub + tax + fee };
+  }
+
+  const luhn = (n) => {
+    let sum = 0;
+    [...n].reverse().forEach((d, i) => { let v = +d; if (i % 2) { v *= 2; if (v > 9) v -= 9; } sum += v; });
+    return n.length >= 13 && sum % 10 === 0;
+  };
+
+  function addBusinessDays(n) {
+    const d = new Date();
+    while (n > 0) { d.setDate(d.getDate() + 1); if (d.getDay() % 6) n--; }
+    return d;
+  }
+
+  function summaryHTML() {
+    const c = T().checkout, t = totals();
+    return `<aside class="co-summary">
+      <span class="label">${esc(c.summary)}</span>
+      <ul class="bag-list">${bag.map(i => { const p = prod(i.id); return `<li>${img(p.img, p.name)}<div><strong>${esc(p.name)}</strong><span class="muted">${esc(sizeLabel(i.size))}</span></div><span>${money(p.price[mk])}</span></li>`; }).join('')}</ul>
+      <dl class="co-lines">
+        <div><dt>${esc(c.subtotal)}</dt><dd>${money(t.sub)}</dd></div>
+        <div><dt>${esc(c.shipping)}</dt><dd>${esc(c.free)}</dd></div>
+        ${c.taxRate ? `<div><dt>${esc(c.tax)}</dt><dd>${money(t.tax)}</dd></div>` : ''}
+        ${t.fee ? `<div><dt>${esc(c.codLabel)}</dt><dd>${money(t.fee)}</dd></div>` : ''}
+        <div class="co-total"><dt>${esc(c.total)}</dt><dd>${money(t.total)}</dd></div>
+      </dl>
+    </aside>`;
+  }
+
+  function field(id, label, value, attrs = '') {
+    return `<label class="field"><span>${esc(label)}</span><input id="co-${id}" name="${id}" value="${esc(value || '')}" ${attrs}></label>`;
+  }
+
+  function methodPanel(c, t) {
+    const m = co.method, k = c.card;
+    if (m === 'card') {
+      return `<div class="co-card">
+        ${field('number', k.number, co.card.number, 'inputmode="numeric" autocomplete="off" maxlength="23" placeholder="0000 0000 0000 0000"')}
+        <div class="field-pair">${field('exp', k.exp, co.card.exp, 'inputmode="numeric" autocomplete="off" maxlength="5" placeholder="MM/YY"')}${field('cvc', k.cvc, co.card.cvc, 'inputmode="numeric" autocomplete="off" maxlength="4" placeholder="123"')}</div>
+        ${field('holder', k.holder, co.card.holder, 'autocomplete="off"')}
+        <button type="button" class="link small" data-co="testcard">${esc(k.test)}</button>
+      </div>`;
+    }
+    if (m === 'afterpay') {
+      const part = Math.round(t.total / 4 * 100) / 100;
+      const last = Math.round((t.total - part * 3) * 100) / 100; // last instalment absorbs rounding
+      return `<div class="co-plan"><span class="label">${esc(c.afterpayPlan)}</span><ol>${[0, 2, 4, 6].map(w => `<li><span>${esc(w ? c.afterpayIn(w) : c.afterpayToday)}</span><strong>${money(w === 6 ? last : part)}</strong></li>`).join('')}</ol></div>`;
+    }
+    if (m === 'cod') return `<p class="co-note">${esc(c.cod)}</p>`;
+    const label = c.methods.find(x => x.id === m).label;
+    return `<p class="co-note">${esc(mk === 'nz' ? c.wallet(label) : c.redirect(label))}</p>`;
+  }
+
+  function drawCheckout() {
+    const c = T().checkout, t = totals();
+    const steps = `<ol class="co-steps">${c.steps.map((s, i) => `<li aria-current="${i === co.step ? 'step' : 'false'}" class="${i < co.step ? 'is-done' : ''}">${esc(s)}</li>`).join('')}</ol>`;
+    let main;
+    if (co.step === 0) {
+      const f = c.fields;
+      main = `<form class="co-form" id="co-form" novalidate>
+        <div class="co-row"><span class="label">${esc(c.contact)}</span><button type="button" class="link small" data-co="fill">${esc(c.demoFill)}</button></div>
+        ${field('name', f.name, co.d.name, 'autocomplete="name"')}
+        <div class="field-pair">${field('email', f.email, co.d.email, 'type="email" autocomplete="email"')}${field('phone', f.phone, co.d.phone, 'type="tel" autocomplete="tel"')}</div>
+        ${field('address', f.address, co.d.address, 'autocomplete="street-address"')}
+        <div class="field-pair">${field('city', f.city, co.d.city, 'autocomplete="address-level2"')}${field('post', f.post, co.d.post, 'inputmode="numeric" autocomplete="postal-code"')}</div>
+        ${co.error ? `<p class="co-error" role="alert">${esc(co.error)}</p>` : ''}
+        <button type="submit" class="btn btn--dark btn--block">${esc(c.next)}</button>
+      </form>`;
+    } else if (co.step === 1) {
+      main = `<form class="co-form" id="co-form" novalidate>
+        <span class="label">${esc(c.method)}</span>
+        <div class="pay-opts">${c.methods.map(x => `<label><input type="radio" name="method" value="${x.id}" ${x.id === co.method ? 'checked' : ''}><span>${esc(x.label)}<em>${esc(x.note)}</em></span></label>`).join('')}</div>
+        ${methodPanel(c, t)}
+        ${co.error ? `<p class="co-error" role="alert">${esc(co.error)}</p>` : ''}
+        <button type="submit" class="btn btn--dark btn--block">${esc(co.method === 'cod' ? c.confirm : c.pay(money(co.method === 'afterpay' ? Math.round(t.total / 4 * 100) / 100 : t.total)))}</button>
+        <button type="button" class="link" data-co="back">${esc(c.back)}</button>
+      </form>`;
+    } else if (co.step === 2) {
+      main = `<div class="co-processing" role="status"><span class="spinner" aria-hidden="true"></span><p class="h3">${esc(c.processing)}</p><p class="muted small">${esc(c.processingNote)}</p></div>`;
+    } else {
+      const fmt = (d) => d.toLocaleDateString(c.locale, { day: 'numeric', month: 'long' });
+      const [a, b] = mk === 'nz' ? [8, 12] : [7, 10];
+      const label = c.methods.find(x => x.id === co.method).label;
+      main = `<div class="co-done">
+        <span class="kicker">${esc(c.order)} · ${esc(co.order)}</span>
+        <h3 class="h2">${esc(c.doneTitle)}</h3>
+        <dl class="co-lines">
+          <div><dt>${esc(c.total)}</dt><dd>${money(co.paid)}</dd></div>
+          <div><dt>${esc(c.paidWith)}</dt><dd>${esc(label)}${co.method === 'card' && co.last4 ? ` ·· ${esc(co.last4)}` : ''}</dd></div>
+        </dl>
+        <p>${esc(c.eta(fmt(addBusinessDays(a)), fmt(addBusinessDays(b))))}</p>
+        <p class="muted small">${esc(c.doneNote)}</p>
+        <button type="button" class="btn btn--dark" data-co="close">${esc(c.keep)}</button>
+      </div>`;
+    }
+    const done = co.step === 3;
+    openModal(`<div class="co">
+      <header class="co-head"><h2 class="h3" id="modal-title">${esc(c.title)}</h2>${steps}</header>
+      <p class="co-demo">${esc(c.demo)}</p>
+      <div class="co-grid${done ? ' co-grid--done' : ''}"><div class="co-main">${main}</div>${done ? '' : summaryHTML()}</div>
+    </div>`, 'modal--checkout');
+    bindCheckout();
+  }
+
+  function readForm() {
+    $$('#co-form input').forEach(i => {
+      if (i.type === 'radio') { if (i.checked) co.method = i.value; }
+      else if (['number', 'exp', 'cvc', 'holder'].includes(i.name)) co.card[i.name] = i.value;
+      else co.d[i.name] = i.value.trim();
+    });
+  }
+
+  function bindCheckout() {
+    const c = T().checkout, m = $('#modal');
+    m.onclick = (e) => {
+      const b = e.target.closest('[data-co]');
+      if (!b) return;
+      const a = b.dataset.co;
+      if (a === 'fill') { co.d = { ...c.demoData }; co.error = ''; drawCheckout(); }
+      if (a === 'testcard') { readForm(); co.card = { number: '4242 4242 4242 4242', exp: '12/28', cvc: '123', holder: co.d.name || c.demoData.name }; co.error = ''; drawCheckout(); }
+      if (a === 'back') { readForm(); co.step = 0; co.error = ''; drawCheckout(); }
+      if (a === 'close') closeModal();
+    };
+    const form = $('#co-form');
+    if (!form) return;
+    form.addEventListener('change', (e) => {
+      if (e.target.name === 'method') { readForm(); co.error = ''; drawCheckout(); }
+    });
+    form.addEventListener('input', (e) => {
+      const i = e.target;
+      if (i.name === 'number') i.value = i.value.replace(/\D/g, '').slice(0, 19).replace(/(.{4})(?=.)/g, '$1 ');
+      if (i.name === 'exp') i.value = i.value.replace(/\D/g, '').slice(0, 4).replace(/^(\d{2})(?=\d)/, '$1/');
+      if (i.name === 'cvc') i.value = i.value.replace(/\D/g, '').slice(0, 4);
+    });
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      readForm();
+      if (co.step === 0) {
+        const d = co.d;
+        const ok = ['name', 'email', 'phone', 'address', 'city', 'post'].every(k => d[k]) && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email);
+        co.error = ok ? '' : c.fieldError;
+        if (ok) co.step = 1;
+        return drawCheckout();
+      }
+      if (co.method === 'card') {
+        const k = c.card.errors, num = (co.card.number || '').replace(/\D/g, '');
+        const [mm, yy] = (co.card.exp || '').split('/').map(Number);
+        const now = new Date(), expOk = mm >= 1 && mm <= 12 && yy >= 0 && new Date(2000 + yy, mm) > now;
+        co.error = !luhn(num) ? k.number : !expOk ? k.exp : !/^\d{3,4}$/.test(co.card.cvc || '') ? k.cvc : !(co.card.holder || '').trim() ? k.holder : '';
+        if (co.error) return drawCheckout();
+        if (num === '4000000000000002') { co.error = k.declined; return drawCheckout(); }
+        co.last4 = num.slice(-4);
+      }
+      co.paid = totals().total;
+      co.order = `AND-${mk.toUpperCase()}-${Math.floor(10000 + Math.random() * 90000)}`;
+      co.card = {}; // never keep card details
+      co.step = 2;
+      drawCheckout();
+      setTimeout(() => {
+        if (!co || co.step !== 2) return;
+        bag = []; store.set('andara.bag.' + mk, bag); updateBagCount();
+        co.step = 3;
+        if (!$('#modal').hidden) drawCheckout();
+      }, 1800);
+    });
   }
 
   /* ---------- legal ---------- */

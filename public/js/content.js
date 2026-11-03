@@ -66,6 +66,39 @@ window.ANDARA = (function () {
       afterpay: 'Afterpay: 4 interest-free payments of'
     },
 
+    checkout: {
+      title: 'Checkout',
+      demo: 'Demo checkout. No real payment is made and nothing you type leaves this page. Use the test card 4242 4242 4242 4242.',
+      steps: ['Delivery', 'Payment', 'Confirmation'],
+      contact: 'Contact and delivery',
+      fields: { name: 'Full name', email: 'Email', phone: 'Mobile (for WhatsApp updates)', address: 'Street address', city: 'Town or city', post: 'Postcode' },
+      demoFill: 'Fill with demo details',
+      demoData: { name: 'Aroha Williams', email: 'aroha@example.co.nz', phone: '+64 21 555 0134', address: '12 Cuba Street', city: 'Wellington', post: '6011' },
+      next: 'Continue to payment', back: 'Back',
+      summary: 'Order summary', subtotal: 'Subtotal', shipping: 'Tracked shipping', free: 'Free',
+      tax: 'GST and import duties (15%)', taxRate: 0.15, codFee: 0, codLabel: '', total: 'Total',
+      method: 'Payment method',
+      methods: [
+        { id: 'card', label: 'Credit or debit card', note: 'Visa, Mastercard' },
+        { id: 'afterpay', label: 'Afterpay', note: '4 interest-free payments' },
+        { id: 'paypal', label: 'PayPal', note: 'Pay with your PayPal account' },
+        { id: 'apple', label: 'Apple Pay', note: 'Express wallet' },
+        { id: 'google', label: 'Google Pay', note: 'Express wallet' }
+      ],
+      card: { number: 'Card number', exp: 'Expiry (MM/YY)', cvc: 'CVC', holder: 'Name on card', test: 'Use test card', errors: { number: 'Check the card number.', exp: 'Check the expiry date.', cvc: 'Enter the 3 or 4 digits on the back.', holder: 'Enter the name on the card.', declined: 'Card declined by the bank (demo test card 4000 0000 0000 0002). Try another card.' } },
+      afterpayPlan: 'Your payment plan', afterpayToday: 'Today', afterpayIn: (w) => `In ${w} weeks`,
+      wallet: (m) => `You will confirm the payment in ${m}. In this demo the window is simulated.`,
+      redirect: '',
+      cod: '',
+      pay: (amount) => `Pay ${amount}`, confirm: 'Place order',
+      processing: 'Processing payment…', processingNote: 'Do not close this window.',
+      fieldError: 'Fill in all delivery fields with a valid email.',
+      doneTitle: 'Thank you, your order is confirmed', order: 'Order number', paidWith: 'Paid with',
+      eta: (a, b) => `Estimated delivery: ${a} – ${b}`,
+      doneNote: 'You will get tracked delivery updates by email and WhatsApp. This was a demo: no money was charged.',
+      keep: 'Keep shopping', locale: 'en-NZ'
+    },
+
     ai: {
       kicker: 'AI Proposal',
       title: '<em>Shoes that fit,</em> ordered from the other side of the world.',
@@ -268,6 +301,38 @@ window.ANDARA = (function () {
       payWith: 'Fizetési mód', place: 'Megrendelem', back: 'Vissza a kosárhoz',
       done: 'Köszönjük! Ez egy bemutató áruház, így nem történt fizetés. Éles rendelésnél most nyomon követési értesítéseket kapnál e-mailben.',
       afterpay: ''
+    },
+
+    checkout: {
+      title: 'Pénztár',
+      demo: 'Bemutató pénztár. Valódi fizetés nem történik, és semmi sem hagyja el ezt az oldalt. Használd a 4242 4242 4242 4242 tesztkártyát.',
+      steps: ['Szállítás', 'Fizetés', 'Visszaigazolás'],
+      contact: 'Kapcsolat és szállítás',
+      fields: { name: 'Teljes név', email: 'E-mail', phone: 'Telefonszám', address: 'Utca, házszám', city: 'Település', post: 'Irányítószám' },
+      demoFill: 'Kitöltés bemutató adatokkal',
+      demoData: { name: 'Kovács Anna', email: 'anna.kovacs@example.hu', phone: '+36 30 555 0142', address: 'Király utca 25.', city: 'Budapest', post: '1061' },
+      next: 'Tovább a fizetéshez', back: 'Vissza',
+      summary: 'Rendelés összesítő', subtotal: 'Részösszeg', shipping: 'Nyomon követett szállítás', free: 'Ingyenes',
+      tax: 'Vám és áfa', taxRate: 0, codFee: 990, codLabel: 'Utánvét díja', total: 'Összesen',
+      method: 'Fizetési mód',
+      methods: [
+        { id: 'cod', label: 'Utánvét', note: 'Fizess készpénzzel vagy kártyával a futárnál' },
+        { id: 'card', label: 'Bankkártya', note: 'Visa, Mastercard' },
+        { id: 'barion', label: 'Barion', note: 'Online fizetés Barionnal' },
+        { id: 'simplepay', label: 'SimplePay', note: 'Online fizetés SimplePayjel' }
+      ],
+      card: { number: 'Kártyaszám', exp: 'Lejárat (HH/ÉÉ)', cvc: 'CVC', holder: 'Kártyán szereplő név', test: 'Tesztkártya használata', errors: { number: 'Ellenőrizd a kártyaszámot.', exp: 'Ellenőrizd a lejárati dátumot.', cvc: 'Add meg a hátoldalon lévő 3 vagy 4 számjegyet.', holder: 'Add meg a kártyán szereplő nevet.', declined: 'A bank elutasította a kártyát (4000 0000 0000 0002 bemutató tesztkártya). Próbálj másik kártyát.' } },
+      afterpayPlan: '', afterpayToday: '', afterpayIn: () => '',
+      wallet: () => '',
+      redirect: (m) => `A fizetést a(z) ${m} oldalán erősíted meg. Ebben a bemutatóban az átirányítás szimulált.`,
+      cod: 'A futárnak fizetsz átvételkor, készpénzzel vagy kártyával. Az utánvét díja 990 Ft.',
+      pay: (amount) => `Fizetés: ${amount}`, confirm: 'Megrendelem',
+      processing: 'Fizetés feldolgozása…', processingNote: 'Ne zárd be az ablakot.',
+      fieldError: 'Tölts ki minden szállítási mezőt érvényes e-mail-címmel.',
+      doneTitle: 'Köszönjük, a rendelésed visszaigazoltuk', order: 'Rendelésszám', paidWith: 'Fizetési mód',
+      eta: (a, b) => `Várható kézbesítés: ${a} – ${b}`,
+      doneNote: 'Nyomon követési értesítéseket kapsz e-mailben. Ez bemutató volt: nem történt terhelés.',
+      keep: 'Vásárlás folytatása', locale: 'hu-HU'
     },
 
     ai: {
