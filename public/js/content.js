@@ -4,7 +4,10 @@ window.ANDARA = (function () {
   const products = [
     { id: 'trail', name: 'Frailejón Trail', img: 'trail', rating: 4.9, reviews: { nz: 38, hu: 21 }, price: { nz: 289, hu: 49990 }, bestseller: true },
     { id: 'chelsea', name: 'Andes Chelsea', img: 'chelsea', rating: 4.8, reviews: { nz: 27, hu: 16 }, price: { nz: 259, hu: 42990 } },
-    { id: 'ciudad', name: 'Ciudad Sneaker', img: 'ciudad', rating: 4.7, reviews: { nz: 44, hu: 29 }, price: { nz: 219, hu: 34990 } }
+    { id: 'ciudad', name: 'Ciudad Sneaker', img: 'ciudad', rating: 4.7, reviews: { nz: 44, hu: 29 }, price: { nz: 219, hu: 34990 } },
+    { id: 'giron', name: 'Girón Oxford', img: 'giron', rating: 4.8, reviews: { nz: 19, hu: 12 }, price: { nz: 249, hu: 39990 } },
+    { id: 'barichara', name: 'Barichara Loafer', img: 'barichara', rating: 4.7, reviews: { nz: 23, hu: 14 }, price: { nz: 239, hu: 37990 } },
+    { id: 'chicamocha', name: 'Chicamocha Ankle Boot', img: 'chicamocha', rating: 4.9, reviews: { nz: 15, hu: 11 }, price: { nz: 269, hu: 44990 } }
   ];
 
   const nz = {
@@ -26,7 +29,10 @@ window.ANDARA = (function () {
     product: {
       trail: { type: 'Lace-up leather boot, brogue detail', color: 'Cognac, full-grain' },
       chelsea: { type: 'Pull-on suede Chelsea boot', color: 'Tan suede, dark elastic' },
-      ciudad: { type: 'Low-top leather sneaker', color: 'Sand and white, stitched cupsole' }
+      ciudad: { type: 'Low-top leather sneaker', color: 'Sand and white, stitched cupsole' },
+      giron: { type: 'Leather brogue Oxford', color: 'Chestnut, full-grain' },
+      barichara: { type: 'Horsebit leather loafer', color: 'Cognac, hand-burnished' },
+      chicamocha: { type: "Women's side-zip ankle boot", color: 'Tan, stacked heel' }
     },
     sizeRange: 'UK 6–12 · half sizes on request',
     reviewsWord: 'reviews',
@@ -275,7 +281,10 @@ window.ANDARA = (function () {
     product: {
       trail: { type: 'Fűzős bőrbakancs, lyukmintás díszítéssel', color: 'Konyak, színbőr' },
       chelsea: { type: 'Belebújós velúr Chelsea csizma', color: 'Világosbarna velúr, sötét gumibetét' },
-      ciudad: { type: 'Alacsony szárú bőr sneaker', color: 'Homokszín és fehér, varrott talp' }
+      ciudad: { type: 'Alacsony szárú bőr sneaker', color: 'Homokszín és fehér, varrott talp' },
+      giron: { type: 'Lyukmintás bőr oxford cipő', color: 'Gesztenyebarna, színbőr' },
+      barichara: { type: 'Csatos bőr mokaszin', color: 'Konyak, kézzel polírozott' },
+      chicamocha: { type: 'Női cipzáras bokacsizma', color: 'Világosbarna, rétegelt sarok' }
     },
     sizeRange: 'EU 39–46',
     reviewsWord: 'vélemény',

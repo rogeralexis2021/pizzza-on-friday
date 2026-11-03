@@ -12,7 +12,10 @@ const PHOTOS = {
   trail:   { w: 1400, ids: ['1638609348722-aa2a3a67db26'] },
   chelsea: { w: 1400, ids: ['1608629601270-a0007becead3'] },
   ciudad:  { w: 1400, ids: ['1603808033192-082d6919d3e1'] },
-  about:   { w: 1600, ids: ['1573227896778-8f378c4029d4'] }
+  about:   { w: 1600, ids: ['1573227896778-8f378c4029d4'] },
+  giron:   { w: 1400, ids: ['1614253429340-98120bd6d753'] },
+  barichara: { w: 1400, ids: ['1616406432452-07bc5938759d'] },
+  chicamocha: { w: 1400, ids: ['1605733160314-4fc7dac4bb16'] }
 };
 
 const dir = join(process.cwd(), 'public', 'images');
