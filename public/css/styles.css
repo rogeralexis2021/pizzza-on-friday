@@ -288,6 +288,33 @@ main:focus { outline: none; }
 .source { font-size: 12px; color: var(--muted); }
 .source a { text-underline-offset: 3px; }
 
+/* product gallery, reviews, FAQ */
+.pdp-media { display: flex; flex-direction: column; aspect-ratio: auto; }
+.pdp-view { aspect-ratio: 4 / 5; overflow: hidden; background: var(--stone); }
+.pdp-view img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.2, .7, .2, 1); }
+.pdp-view[data-view="1"] img { transform: scale(2); transform-origin: 62% 62%; }
+.pdp-thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border-top: 1px solid var(--line); }
+.pdp-thumbs button { position: relative; border: 0; padding: 0; background: var(--paper); aspect-ratio: 1; overflow: hidden; opacity: .6; transition: opacity .2s; }
+.pdp-thumbs button[aria-pressed="true"], .pdp-thumbs button:hover { opacity: 1; }
+.pdp-thumbs button[aria-pressed="true"] { box-shadow: inset 0 -2px 0 var(--ink); }
+.pdp-thumbs img { width: 100%; height: 100%; object-fit: cover; }
+.pdp-thumbs button:nth-child(2) img { transform: scale(2); transform-origin: 62% 62%; }
+.pdp-thumbs span { position: absolute; left: 6px; bottom: 6px; background: var(--paper); padding: 2px 6px; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.pdp-extra { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); padding: clamp(24px, 4vw, 48px); border-top: 1px solid var(--line); }
+.pdp-extra section { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.reviews { list-style: none; margin: 0; padding: 0; }
+.reviews li { padding: 14px 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; }
+.reviews p { font-size: 15px; }
+.faq { border-top: 1px solid var(--ink); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; font-size: 15px; font-weight: 500; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: '+'; font-size: 20px; line-height: 1; font-weight: 300; }
+.faq details[open] summary::after { content: '\2212'; }
+.faq details p { padding: 0 0 18px; color: #3A3936; max-width: 60ch; font-size: 15px; }
+.home-faq { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(28px, 5vw, 80px); padding-top: 0; }
+.home-faq .h2 { margin-top: 10px; }
+
 /* culture + Colombia */
 .culture { padding-top: 0; }
 .culture .h2 { display: flex; flex-direction: column; gap: 10px; }
@@ -327,8 +354,6 @@ main:focus { outline: none; }
 .legal p { font-size: 15px; color: #3A3936; }
 
 .pdp { display: grid; grid-template-columns: 1.1fr 1fr; }
-.pdp-media { background: var(--stone); aspect-ratio: 4 / 5; }
-.pdp-media img { width: 100%; height: 100%; object-fit: cover; }
 .pdp-info { padding: clamp(24px, 4vw, 48px); display: flex; flex-direction: column; gap: 12px; justify-content: center; }
 .pdp-price { font-size: 22px; margin-top: 8px; }
 .pdp-sizes { display: flex; flex-direction: column; gap: 10px; margin: 12px 0 6px; }
@@ -503,13 +528,14 @@ body.is-checkout .announce, body.is-checkout .site-header, body.is-checkout .sit
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .stats-grid div:nth-child(3) { border-left: 0; padding-left: 0; }
   .stats-grid div:nth-child(n+3) { border-top: 1px solid var(--line); }
-  .about, .split, .charts, .ff, .pdp { grid-template-columns: 1fr; }
+  .about, .split, .charts, .ff, .pdp, .pdp-extra, .home-faq { grid-template-columns: 1fr; }
   .cols4 { grid-template-columns: 1fr 1fr; gap: 28px 0; }
   .cols4 > div:nth-child(3) { border-left: 0; padding-left: 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: span 2; }
   .ptable-head { top: 65px; }
-  .pdp-media { aspect-ratio: 4 / 3; }
+  .pdp-view { aspect-ratio: 4 / 3; }
+  .pdp-thumbs { grid-template-columns: repeat(3, 72px); background: none; gap: 8px; padding: 8px; }
   .chart figcaption { min-height: 0; }
 }
 @media (max-width: 640px) {

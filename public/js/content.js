@@ -48,10 +48,11 @@ window.ANDARA = (function () {
       aboutKicker: 'Who we are',
       aboutTitle: 'From the Andes to your door',
       about: [
-        'ANDARA is a Colombian footwear brand. Every pair is cut and stitched by hand from Colombian leather by artisans in Bucaramanga, one of the country\'s oldest shoemaking towns, then shipped straight to you with no middlemen.',
-        'Our name joins <em>andar</em>, to walk, with the Andes, where we come from. We use AI so you can buy leather boots online from the other side of the world and get the size right the first time.',
-        'We work with two family tanneries in Santander and a workshop of eleven shoemakers. Each pair takes about two days to make.'
+        'ANDARA is a Colombian footwear brand. Every pair is cut and stitched by hand in Bucaramanga, one of the country\'s oldest shoemaking towns, and shipped straight to you.',
+        'Our name joins <em>andar</em>, to walk, with the Andes. Two family tanneries, eleven shoemakers, about two days per pair, and AI to get your size right the first time.'
       ],
+      faqKicker: 'Help', faqTitle: 'Questions, answered',
+      faq: [['ship', 'How long does shipping to New Zealand take?'], ['returns', 'How do returns and exchanges work?'], ['size', 'How do I find my size?'], ['pay', 'Which payment methods can I use?'], ['care', 'How do I care for leather?']],
       cultureKicker: 'Our roots',
       cultureTitle: 'Colombian at heart',
       culture: [
@@ -62,7 +63,16 @@ window.ANDARA = (function () {
       ]
     },
 
-    pdp: { size: 'Size (UK / AU)', add: 'Add to bag', added: 'Added to bag', findSize: 'Not sure? Find my size', pick: 'Select a size', payNote: (p) => `or 4 interest-free payments of ${p} with Afterpay`, made: 'Handmade to order in Bucaramanga · ships in 8–12 days' },
+    pdp: { size: 'Size (UK / AU)', add: 'Add to bag', added: 'Added to bag', findSize: 'Not sure? Find my size', pick: 'Select a size', payNote: (p) => `or 4 interest-free payments of ${p} with Afterpay`, made: 'Handmade to order in Bucaramanga · ships in 8–12 days',
+      views: ['Product', 'Detail', 'Leather'], reviewsTitle: 'Customer reviews', verified: 'Verified buyer', faqTitle: 'Good to know',
+      reviews: {
+        trail: [['Aroha W.', 'Wellington', 5, 'FitFinder said UK 9 and it was spot on. Took them up the Tongariro Crossing in week two.'], ['James T.', 'Christchurch', 5, 'Thick leather, perfect stitching. Arrived in 10 days with no surprises at the door.']],
+        chelsea: [['Sophie M.', 'Dunedin', 5, 'Softest suede I have owned. Easy on, easy off, sharp enough for work.'], ['Liam P.', 'Auckland', 4, 'Lovely boot. I went half a size down as FitFinder suggested and it fits well.']],
+        ciudad: [['Hana S.', 'Hamilton', 5, 'Clean, simple and comfortable straight out of the box.'], ['Jack D.', 'Tauranga', 4, 'Great city sneaker. Took a few days to soften up.']],
+        giron: [['Tane R.', 'Napier', 5, 'Proper shoemaking. Wore them to a wedding and three people asked where they were from.'], ['Olivia H.', 'Nelson', 5, 'Beautiful brogue detail and true to size.']],
+        barichara: [['Ben C.', 'Queenstown', 5, 'My go-to summer shoe. The leather has a gorgeous shine.'], ['Mere K.', 'Rotorua', 4, 'Smart loafer. The size exchange was quick and free.']],
+        chicamocha: [['Emma L.', 'Wanaka', 5, 'Warm colour, comfy heel, and the zip makes them easy to wear.'], ['Noah F.', 'Palmerston North', 5, 'Bought them for my partner. Fits perfectly and feels handmade in the best way.']]
+      } },
 
     bagPanel: {
       title: 'Your bag', empty: 'Your bag is empty.', remove: 'Remove', subtotal: 'Subtotal',
@@ -300,10 +310,11 @@ window.ANDARA = (function () {
       aboutKicker: 'Rólunk',
       aboutTitle: 'Az Andokból egyenesen hozzád',
       about: [
-        'Az ANDARA egy kolumbiai cipőmárka. Minden párat kolumbiai bőrből, kézzel szabnak és varrnak Bucaramanga mesterei, az ország egyik legrégebbi cipészvárosában, majd közvetítők nélkül, egyenesen hozzád szállítjuk.',
-        'A nevünk az <em>andar</em> (járni) és az Andok szavakból született. Mesterséges intelligenciával segítünk, hogy online is elsőre eltaláld a méretedet.',
-        'Két santanderi családi cserzőüzemmel és egy tizenegy cipészből álló műhellyel dolgozunk. Egy pár elkészítése körülbelül két nap.'
+        'Az ANDARA kolumbiai cipőmárka. Minden párat kézzel szabnak és varrnak Bucaramangában, az ország egyik legrégebbi cipészvárosában, és egyenesen hozzád szállítjuk.',
+        'A nevünk az <em>andar</em> (járni) és az Andok szavakból született. Két családi cserzőüzem, tizenegy cipész, páronként kb. két nap, és MI, hogy elsőre jó legyen a méret.'
       ],
+      faqKicker: 'Segítség', faqTitle: 'Gyakori kérdések',
+      faq: [['ship', 'Mennyi idő a szállítás Magyarországra?'], ['returns', 'Hogyan működik a visszaküldés és a csere?'], ['size', 'Hogyan találom meg a méretem?'], ['pay', 'Hogyan fizethetek?'], ['care', 'Hogyan ápoljam a bőrt?']],
       cultureKicker: 'Gyökereink',
       cultureTitle: 'Kolumbiai szívvel',
       culture: [
@@ -314,7 +325,16 @@ window.ANDARA = (function () {
       ]
     },
 
-    pdp: { size: 'Méret (EU)', add: 'Kosárba', added: 'Kosárba téve', findSize: 'Bizonytalan vagy? Találd meg a méreted', pick: 'Válassz méretet', payNote: () => 'Utánvéttel is fizethetsz a futárnál', made: 'Kézzel készül Bucaramangában · szállítás 7–10 nap' },
+    pdp: { size: 'Méret (EU)', add: 'Kosárba', added: 'Kosárba téve', findSize: 'Bizonytalan vagy? Találd meg a méreted', pick: 'Válassz méretet', payNote: () => 'Utánvéttel is fizethetsz a futárnál', made: 'Kézzel készül Bucaramangában · szállítás 7–10 nap',
+      views: ['Termék', 'Részlet', 'Bőr'], reviewsTitle: 'Vásárlói vélemények', verified: 'Ellenőrzött vásárló', faqTitle: 'Jó tudni',
+      reviews: {
+        trail: [['Kovács A.', 'Budapest', 5, 'A FitFinder EU 43-at ajánlott, pontosan jó lett. Már a Bükkben is kipróbáltam.'], ['Nagy P.', 'Debrecen', 5, 'Vastag bőr, tökéletes varrás. 8 nap alatt megjött, utánvéttel fizettem.']],
+        chelsea: [['Tóth E.', 'Szeged', 5, 'Nagyon puha velúr, könnyű felvenni, az irodában is elegáns.'], ['Szabó M.', 'Pécs', 4, 'Szép csizma. A FitFinder tanácsára fél számmal kisebbet kértem, jól áll.']],
+        ciudad: [['Horváth L.', 'Győr', 5, 'Egyszerű, letisztult és már az első naptól kényelmes.'], ['Varga K.', 'Miskolc', 4, 'Jó városi cipő, pár nap alatt megpuhult.']],
+        giron: [['Kiss D.', 'Eger', 5, 'Igazi cipészmunka. Egy esküvőn többen is megkérdezték, honnan van.'], ['Molnár B.', 'Sopron', 5, 'Gyönyörű lyukminta, méretre pontos.']],
+        barichara: [['Németh Z.', 'Veszprém', 5, 'Nyári kedvencem, a bőr szépen fénylik.'], ['Farkas R.', 'Kecskemét', 4, 'Elegáns mokaszin, a méretcsere gyors és ingyenes volt.']],
+        chicamocha: [['Balogh J.', 'Szombathely', 5, 'Meleg szín, kényelmes sarok, a cipzár miatt könnyű felvenni.'], ['Papp V.', 'Nyíregyháza', 5, 'Tökéletesen illik, látszik rajta a kézi munka.']]
+      } },
 
     bagPanel: {
       title: 'Kosarad', empty: 'A kosarad üres.', remove: 'Törlés', subtotal: 'Részösszeg',

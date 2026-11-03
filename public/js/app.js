@@ -48,6 +48,7 @@
   function renderChrome() {
     const t = T();
     document.documentElement.lang = t.htmlLang;
+    updateSchema();
     $('#announce').innerHTML = t.announce.map(a => `<span>${esc(a)}</span>`).join('<i aria-hidden="true">·</i>');
 
     const links = [['home', '#/'], ['ai', '#/ai'], ['strategy', '#/strategy'], ['market', '#/market']]
@@ -91,6 +92,31 @@
   function updateBagCount() {
     const n = bag.reduce((s, i) => s + i.qty, 0);
     $('#bag-btn').textContent = `${T().bag} (${n})`;
+  }
+
+  /* ---------- FAQ (answers shared with Frai) ---------- */
+  function faqHTML(ids) {
+    const qs = T().home.faq.filter(([id]) => ids.includes(id));
+    return `<div class="faq">${qs.map(([id, q]) => `<details><summary>${esc(q)}</summary><p>${esc(frai.answers[mk][id])}</p></details>`).join('')}</div>`;
+  }
+
+  /* ---------- structured data for search engines and AI answers (SGE) ---------- */
+  function updateSchema() {
+    const t = T(), base = location.href.split('#')[0].split('?')[0].replace(/[^/]*$/, '');
+    const graph = [
+      { '@type': 'Organization', '@id': base + '#org', name: 'ANDARA', url: base, email: contact.email, address: { '@type': 'PostalAddress', addressLocality: 'Bucaramanga', addressRegion: 'Santander', addressCountry: 'CO' } },
+      ...products.map(p => ({
+        '@type': 'Product', name: p.name, image: base + 'images/' + p.img + '.jpg',
+        description: `${t.product[p.id].type}. ${t.product[p.id].color}.`, brand: { '@type': 'Brand', name: 'ANDARA' },
+        offers: { '@type': 'Offer', price: p.price[mk], priceCurrency: t.currency, availability: 'https://schema.org/InStock', url: base + '?m=' + mk },
+        aggregateRating: { '@type': 'AggregateRating', ratingValue: p.rating, reviewCount: p.reviews[mk] },
+        review: t.pdp.reviews[p.id].map(([n, , r, txt]) => ({ '@type': 'Review', author: { '@type': 'Person', name: n }, reviewRating: { '@type': 'Rating', ratingValue: r }, reviewBody: txt }))
+      })),
+      { '@type': 'FAQPage', mainEntity: t.home.faq.map(([id, q]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: frai.answers[mk][id] } })) }
+    ];
+    let el = document.getElementById('ld-json');
+    if (!el) { el = document.createElement('script'); el.type = 'application/ld+json'; el.id = 'ld-json'; document.head.appendChild(el); }
+    el.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph, inLanguage: t.htmlLang });
   }
 
   /* ---------- views ---------- */
@@ -156,6 +182,10 @@
     <section class="wrap section culture">
       <div class="section-head"><h2 class="h2"><span class="kicker">${esc(h.cultureKicker)}</span>${esc(h.cultureTitle)}</h2></div>
       <div class="cols4">${h.culture.map(([t, d]) => `<div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('')}</div>
+    </section>
+    <section class="wrap section home-faq">
+      <div><span class="kicker">${esc(h.faqKicker)}</span><h2 class="h2">${esc(h.faqTitle)}</h2></div>
+      ${faqHTML(h.faq.map(([id]) => id))}
     </section>`;
   }
 
@@ -474,7 +504,10 @@
     let chosen = null;
     const html = `
       <div class="pdp">
-        <div class="pdp-media">${img(p.img, p.name)}</div>
+        <div class="pdp-media">
+          <div class="pdp-view" id="pdp-view" data-view="0">${img(p.img, p.name)}</div>
+          <div class="pdp-thumbs">${t.pdp.views.map((v, i) => `<button type="button" data-view="${i}" aria-pressed="${i === 0}" aria-label="${esc(v)}">${img(i === 2 ? 'about' : p.img, v)}<span>${esc(v)}</span></button>`).join('')}</div>
+        </div>
         <div class="pdp-info">
           ${p.bestseller ? `<span class="kicker">${esc(t.home.bestseller)}</span>` : ''}
           <h2 class="h2" id="modal-title">${esc(p.name)}</h2>
@@ -487,8 +520,27 @@
           <a class="link-arrow" href="#/ai?p=${p.id}" data-anchor="fitfinder">${esc(t.pdp.findSize)}</a>
           <p class="small muted">${esc(t.pdp.made)}</p>
         </div>
+        <div class="pdp-extra">
+          <section>
+            <h3 class="h3">${esc(t.pdp.reviewsTitle)}</h3>
+            <p class="rating">${stars(p.rating)} <span>${num(p.rating)} · ${p.reviews[mk]} ${esc(t.reviewsWord)}</span></p>
+            <ul class="reviews">${t.pdp.reviews[p.id].map(([n, c, r, txt]) => `<li>${stars(r)}<p>${esc(txt)}</p><span class="muted small">${esc(n)} · ${esc(c)} · ${esc(t.pdp.verified)}</span></li>`).join('')}</ul>
+          </section>
+          <section>
+            <h3 class="h3">${esc(t.pdp.faqTitle)}</h3>
+            ${faqHTML(['size', 'ship', 'returns'])}
+          </section>
+        </div>
       </div>`;
     openModal(html, 'modal--wide');
+    $('.pdp-thumbs').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-view]');
+      if (!b) return;
+      $$('.pdp-thumbs [data-view]').forEach(x => x.setAttribute('aria-pressed', x === b));
+      const v = $('#pdp-view');
+      v.dataset.view = b.dataset.view;
+      v.innerHTML = img(b.dataset.view === '2' ? 'about' : p.img, p.name);
+    });
     const add = $('#pdp-add');
     $('.pdp-sizes').addEventListener('click', (e) => {
       const b = e.target.closest('[data-size]');
