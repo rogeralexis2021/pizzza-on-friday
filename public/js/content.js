@@ -4,11 +4,14 @@ window.ANDARA = (function () {
   const products = [
     { id: 'trail', name: 'Frailejón Trail', img: 'trail', rating: 4.9, reviews: { nz: 38, hu: 21 }, price: { nz: 289, hu: 49990 }, bestseller: true },
     { id: 'chelsea', name: 'Andes Chelsea', img: 'chelsea', rating: 4.8, reviews: { nz: 27, hu: 16 }, price: { nz: 259, hu: 42990 } },
-    { id: 'ciudad', name: 'Ciudad Sneaker', img: 'ciudad', rating: 4.7, reviews: { nz: 44, hu: 29 }, price: { nz: 219, hu: 34990 } }
+    { id: 'ciudad', name: 'Ciudad Sneaker', img: 'ciudad', rating: 4.7, reviews: { nz: 44, hu: 29 }, price: { nz: 219, hu: 34990 } },
+    { id: 'giron', name: 'Girón Oxford', img: 'giron', rating: 4.8, reviews: { nz: 19, hu: 12 }, price: { nz: 249, hu: 39990 } },
+    { id: 'barichara', name: 'Barichara Loafer', img: 'barichara', rating: 4.7, reviews: { nz: 23, hu: 14 }, price: { nz: 239, hu: 37990 } },
+    { id: 'chicamocha', name: 'Chicamocha Ankle Boot', img: 'chicamocha', rating: 4.9, reviews: { nz: 15, hu: 11 }, price: { nz: 269, hu: 44990 } }
   ];
 
   const nz = {
-    code: 'nz', htmlLang: 'en-NZ', label: 'NZ · English', short: 'NZ · EN',
+    code: 'nz', htmlLang: 'en-NZ', homeTitle: 'ANDARA — Leather shoes, handmade in Colombia', label: 'NZ · English', short: 'NZ · EN',
     currency: 'NZD', sizeSystem: 'UK',
     sizes: [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12],
     defaultSize: 9,
@@ -24,9 +27,12 @@ window.ANDARA = (function () {
     payments: ['Visa', 'Mastercard', 'Afterpay', 'PayPal', 'Apple Pay', 'Google Pay'],
 
     product: {
-      trail: { type: 'Lace-up leather boot, lug sole', color: 'Cognac, full-grain' },
-      chelsea: { type: 'Pull-on Chelsea boot', color: 'Dark brown, forest-green elastic' },
-      ciudad: { type: 'Low-top leather sneaker', color: 'Tan, stitched cupsole' }
+      trail: { type: 'Lace-up leather boot, brogue detail', color: 'Cognac, full-grain' },
+      chelsea: { type: 'Pull-on suede Chelsea boot', color: 'Tan suede, dark elastic' },
+      ciudad: { type: 'Low-top leather sneaker', color: 'Sand and white, stitched cupsole' },
+      giron: { type: 'Leather brogue Oxford', color: 'Chestnut, full-grain' },
+      barichara: { type: 'Horsebit leather loafer', color: 'Cognac, hand-burnished' },
+      chicamocha: { type: "Women's side-zip ankle boot", color: 'Tan, stacked heel' }
     },
     sizeRange: 'UK 6–12 · half sizes on request',
     reviewsWord: 'reviews',
@@ -42,13 +48,31 @@ window.ANDARA = (function () {
       aboutKicker: 'Who we are',
       aboutTitle: 'From the Andes to your door',
       about: [
-        'ANDARA is a Colombian footwear brand. Every pair is cut and stitched by hand from Colombian leather by artisans in Bucaramanga, one of the country\'s oldest shoemaking towns, then shipped straight to you with no middlemen.',
-        'Our name joins <em>andar</em>, to walk, with the Andes, where we come from. We use AI so you can buy leather boots online from the other side of the world and get the size right the first time.',
-        'We work with two family tanneries in Santander and a workshop of eleven shoemakers. Each pair takes about two days to make.'
+        'ANDARA is a Colombian footwear brand. Every pair is cut and stitched by hand in Bucaramanga, one of the country\'s oldest shoemaking towns, and shipped straight to you.',
+        'Our name joins <em>andar</em>, to walk, with the Andes. Two family tanneries, eleven shoemakers, about two days per pair, and AI to get your size right the first time.'
+      ],
+      faqKicker: 'Help', faqTitle: 'Questions, answered',
+      faq: [['ship', 'How long does shipping to New Zealand take?'], ['returns', 'How do returns and exchanges work?'], ['size', 'How do I find my size?'], ['pay', 'Which payment methods can I use?'], ['care', 'How do I care for leather?']],
+      cultureKicker: 'Our roots',
+      cultureTitle: 'Colombian at heart',
+      culture: [
+        ['Frailejón', 'A plant that grows only in the Andean páramo and keeps Colombia\'s water flowing. Our trail boot carries its name.'],
+        ['Bucaramanga', 'The City of Parks, and one of Colombia\'s shoemaking capitals. Generations of family workshops have made shoes here.'],
+        ['Fique', 'The natural fibre of Santander, woven by hand in Curití. Every pair ships in a fique bag made by local weavers.'],
+        ['Tinto at ten', 'Every morning the workshop stops for a small black Colombian coffee. Then back to the bench.']
       ]
     },
 
-    pdp: { size: 'Size (UK / AU)', add: 'Add to bag', added: 'Added to bag', findSize: 'Not sure? Find my size', pick: 'Select a size', payNote: (p) => `or 4 interest-free payments of ${p} with Afterpay`, made: 'Handmade to order in Bucaramanga · ships in 8–12 days' },
+    pdp: { size: 'Size (UK / AU)', add: 'Add to bag', added: 'Added to bag', findSize: 'Not sure? Find my size', pick: 'Select a size', payNote: (p) => `or 4 interest-free payments of ${p} with Afterpay`, made: 'Handmade to order in Bucaramanga · ships in 8–12 days',
+      views: ['Product', 'Detail', 'Leather'], reviewsTitle: 'Customer reviews', verified: 'Verified buyer', faqTitle: 'Good to know',
+      reviews: {
+        trail: [['Aroha W.', 'Wellington', 5, 'FitFinder said UK 9 and it was spot on. Took them up the Tongariro Crossing in week two.'], ['James T.', 'Christchurch', 5, 'Thick leather, perfect stitching. Arrived in 10 days with no surprises at the door.']],
+        chelsea: [['Sophie M.', 'Dunedin', 5, 'Softest suede I have owned. Easy on, easy off, sharp enough for work.'], ['Liam P.', 'Auckland', 4, 'Lovely boot. I went half a size down as FitFinder suggested and it fits well.']],
+        ciudad: [['Hana S.', 'Hamilton', 5, 'Clean, simple and comfortable straight out of the box.'], ['Jack D.', 'Tauranga', 4, 'Great city sneaker. Took a few days to soften up.']],
+        giron: [['Tane R.', 'Napier', 5, 'Proper shoemaking. Wore them to a wedding and three people asked where they were from.'], ['Olivia H.', 'Nelson', 5, 'Beautiful brogue detail and true to size.']],
+        barichara: [['Ben C.', 'Queenstown', 5, 'My go-to summer shoe. The leather has a gorgeous shine.'], ['Mere K.', 'Rotorua', 4, 'Smart loafer. The size exchange was quick and free.']],
+        chicamocha: [['Emma L.', 'Wanaka', 5, 'Warm colour, comfy heel, and the zip makes them easy to wear.'], ['Noah F.', 'Palmerston North', 5, 'Bought them for my partner. Fits perfectly and feels handmade in the best way.']]
+      } },
 
     bagPanel: {
       title: 'Your bag', empty: 'Your bag is empty.', remove: 'Remove', subtotal: 'Subtotal',
@@ -56,6 +80,51 @@ window.ANDARA = (function () {
       payWith: 'Pay with', place: 'Place order', back: 'Back to bag',
       done: 'Thank you. This is a demo store, so no payment was taken. In a live order you would now get tracked updates by email and WhatsApp.',
       afterpay: 'Afterpay: 4 interest-free payments of'
+    },
+
+    checkout: {
+      demo: 'Demo store for an E-Business class project. No real payments are processed. Test card 4242 4242 4242 4242 · discount code ANDARA10.',
+      crumbs: ['Bag', 'Information', 'Shipping', 'Payment'],
+      express: 'Express checkout', or: 'or',
+      expressMethods: [['afterpay', 'Afterpay'], ['paypal', 'PayPal'], ['apple', 'Apple Pay'], ['google', 'Google Pay']],
+      contact: 'Contact', email: 'Email', news: 'Email me with news and offers',
+      delivery: 'Delivery', country: 'Country/Region', countryName: 'New Zealand',
+      first: 'First name', last: 'Last name', nameOrder: ['first', 'last'],
+      address: 'Address', apt: 'Apartment, suite, etc. (optional)', city: 'City', region: 'Region',
+      regions: ['Auckland', 'Bay of Plenty', 'Canterbury', 'Hawke\'s Bay', 'Otago', 'Waikato', 'Wellington', 'Other'],
+      post: 'Postcode', phone: 'Phone (for WhatsApp delivery updates)',
+      demoFill: 'Fill with demo details',
+      demoData: { email: 'aroha@example.co.nz', first: 'Aroha', last: 'Williams', address: '12 Cuba Street', apt: '', city: 'Wellington', region: 'Wellington', post: '6011', phone: '+64 21 555 0134' },
+      required: 'Required', invalidEmail: 'Enter a valid email',
+      toShipping: 'Continue to shipping', toPayment: 'Continue to payment',
+      returnBag: 'Return to bag', returnInfo: 'Return to information', returnShipping: 'Return to shipping',
+      review: { contact: 'Contact', shipTo: 'Ship to', method: 'Method', change: 'Change' },
+      shippingTitle: 'Shipping method',
+      rates: [
+        { id: 'std', label: 'Tracked standard', note: '8–12 business days', price: 0, days: [8, 12] },
+        { id: 'exp', label: 'Tracked express', note: '5–7 business days', price: 25, days: [5, 7] }
+      ],
+      paymentTitle: 'Payment', paymentNote: 'Demo checkout: nothing you type is sent or stored.',
+      methods: [
+        { id: 'card', label: 'Credit or debit card', note: 'Visa · Mastercard' },
+        { id: 'afterpay', label: 'Afterpay', note: '4 interest-free payments' },
+        { id: 'paypal', label: 'PayPal', note: '' },
+        { id: 'apple', label: 'Apple Pay', note: '' },
+        { id: 'google', label: 'Google Pay', note: '' }
+      ],
+      card: { number: 'Card number', exp: 'Expiration date (MM / YY)', cvc: 'Security code', holder: 'Name on card', test: 'Use test card',
+        errors: { number: 'Enter a valid card number', exp: 'Enter a valid expiry date', cvc: 'Enter the 3 or 4 digit code', holder: 'Enter the name on the card', declined: 'Your card was declined. Try another card. (Demo decline card 4000 0000 0000 0002.)' } },
+      billing: 'Use shipping address as billing address',
+      afterpayPlan: 'Your Afterpay plan', afterpayToday: 'Today', afterpayIn: (w) => `In ${w} weeks`,
+      redirect: (m) => `After you click “Pay now”, you would finish the payment in ${m}. In this demo that step is simulated.`,
+      cod: '', codFee: 0,
+      payNow: 'Pay now', processing: 'Processing your payment…', processingNote: 'Please don’t close this page.',
+      summary: { show: 'Show order summary', hide: 'Hide order summary', discount: 'Discount code', apply: 'Apply', subtotal: 'Subtotal', shipping: 'Shipping', next: 'Calculated at next step', free: 'Free', tax: 'GST and import duties (15%)', vat: null, total: 'Total', currency: 'NZD', codFee: '', badCode: 'Enter a valid discount code. Try ANDARA10.', discountLabel: 'Discount', qty: 'Quantity' },
+      taxRate: 0.15,
+      emptyBag: 'Your bag is empty.', backShop: 'Back to the shop',
+      thanks: { order: 'Order', title: (n) => `Thank you, ${n}!`, confirmed: 'Your order is confirmed', confirmedNote: 'You’ll receive a confirmation email shortly, then tracked delivery updates by email and WhatsApp.', details: 'Order details', contact: 'Contact information', payment: 'Payment method', address: 'Shipping address', billing: 'Billing address', billingSame: 'Same as shipping address', method: 'Shipping method', eta: 'Estimated delivery', cont: 'Continue shopping', help: 'Need help? WhatsApp +57 300 000 0000', demo: 'Demo order: no money was charged.' },
+      policies: ['refund', 'privacy', 'terms'],
+      locale: 'en-NZ'
     },
 
     ai: {
@@ -147,7 +216,18 @@ window.ANDARA = (function () {
           source: 'Source: Trade Magazin',
           url: 'https://trademagazin.hu/en/a-magyar-vasarlok-egyre-tudatosabba'
         }
-      ]
+      ],
+      colombia: {
+        kicker: 'Home market',
+        title: 'Colombia today',
+        intro: 'Before exporting, ANDARA sells in Colombia. These 2025 figures are illustrative, made up for this project.',
+        stats: [['4,860', 'pairs sold in Colombia in 2025'], ['COP 1,210 M', 'revenue, about USD 300,000'], ['34%', 'of customers bought again'], ['6.1%', 'return rate, mostly size exchanges']],
+        charts: [
+          { title: 'Colombia: share of pairs sold by city (2025)', bars: [['Bucaramanga', 31], ['Bogotá', 28], ['Medellín', 19], ['Cali', 9], ['Other cities', 13]] },
+          { title: 'Colombia: share of pairs sold by channel (2025)', bars: [['Website', 38], ['Instagram and WhatsApp', 33], ['Workshop store', 21], ['Craft fairs', 8]] }
+        ],
+        source: 'Illustrative ANDARA figures for this E-Business project, not real company data.'
+      }
     },
 
     legal: {
@@ -193,7 +273,7 @@ window.ANDARA = (function () {
   };
 
   const hu = {
-    code: 'hu', htmlLang: 'hu', label: 'HU · Magyar', short: 'HU · HU',
+    code: 'hu', htmlLang: 'hu', homeTitle: 'ANDARA — Kézzel készült kolumbiai bőrcipők', label: 'HU · Magyar', short: 'HU · HU',
     currency: 'HUF', sizeSystem: 'EU',
     sizes: [39, 40, 41, 42, 43, 44, 45, 46],
     defaultSize: 43,
@@ -209,9 +289,12 @@ window.ANDARA = (function () {
     payments: ['Utánvét', 'Bankkártya', 'Barion', 'SimplePay'],
 
     product: {
-      trail: { type: 'Fűzős bőrbakancs, profilos talp', color: 'Konyak, színbőr' },
-      chelsea: { type: 'Belebújós Chelsea csizma', color: 'Sötétbarna, erdőzöld gumibetét' },
-      ciudad: { type: 'Alacsony szárú bőr sneaker', color: 'Világosbarna, varrott talp' }
+      trail: { type: 'Fűzős bőrbakancs, lyukmintás díszítéssel', color: 'Konyak, színbőr' },
+      chelsea: { type: 'Belebújós velúr Chelsea csizma', color: 'Világosbarna velúr, sötét gumibetét' },
+      ciudad: { type: 'Alacsony szárú bőr sneaker', color: 'Homokszín és fehér, varrott talp' },
+      giron: { type: 'Lyukmintás bőr oxford cipő', color: 'Gesztenyebarna, színbőr' },
+      barichara: { type: 'Csatos bőr mokaszin', color: 'Konyak, kézzel polírozott' },
+      chicamocha: { type: 'Női cipzáras bokacsizma', color: 'Világosbarna, rétegelt sarok' }
     },
     sizeRange: 'EU 39–46',
     reviewsWord: 'vélemény',
@@ -227,13 +310,31 @@ window.ANDARA = (function () {
       aboutKicker: 'Rólunk',
       aboutTitle: 'Az Andokból egyenesen hozzád',
       about: [
-        'Az ANDARA egy kolumbiai cipőmárka. Minden párat kolumbiai bőrből, kézzel szabnak és varrnak Bucaramanga mesterei, az ország egyik legrégebbi cipészvárosában, majd közvetítők nélkül, egyenesen hozzád szállítjuk.',
-        'A nevünk az <em>andar</em> (járni) és az Andok szavakból született. Mesterséges intelligenciával segítünk, hogy online is elsőre eltaláld a méretedet.',
-        'Két santanderi családi cserzőüzemmel és egy tizenegy cipészből álló műhellyel dolgozunk. Egy pár elkészítése körülbelül két nap.'
+        'Az ANDARA kolumbiai cipőmárka. Minden párat kézzel szabnak és varrnak Bucaramangában, az ország egyik legrégebbi cipészvárosában, és egyenesen hozzád szállítjuk.',
+        'A nevünk az <em>andar</em> (járni) és az Andok szavakból született. Két családi cserzőüzem, tizenegy cipész, páronként kb. két nap, és MI, hogy elsőre jó legyen a méret.'
+      ],
+      faqKicker: 'Segítség', faqTitle: 'Gyakori kérdések',
+      faq: [['ship', 'Mennyi idő a szállítás Magyarországra?'], ['returns', 'Hogyan működik a visszaküldés és a csere?'], ['size', 'Hogyan találom meg a méretem?'], ['pay', 'Hogyan fizethetek?'], ['care', 'Hogyan ápoljam a bőrt?']],
+      cultureKicker: 'Gyökereink',
+      cultureTitle: 'Kolumbiai szívvel',
+      culture: [
+        ['Frailejón', 'Csak az andoki páramón élő növény, amely Kolumbia vizét őrzi. Túrabakancsunk róla kapta a nevét.'],
+        ['Bucaramanga', 'A parkok városa és Kolumbia egyik cipőfővárosa. Itt családi műhelyek generációk óta készítenek cipőt.'],
+        ['Fique', 'Santander természetes rostja, amelyet Curitíben kézzel szőnek. Minden pár helyi szövők által készített fique zsákban érkezik.'],
+        ['Tinto tízkor', 'A műhely minden reggel megáll egy kis fekete kolumbiai kávéra. Aztán vissza a munkapadhoz.']
       ]
     },
 
-    pdp: { size: 'Méret (EU)', add: 'Kosárba', added: 'Kosárba téve', findSize: 'Bizonytalan vagy? Találd meg a méreted', pick: 'Válassz méretet', payNote: () => 'Utánvéttel is fizethetsz a futárnál', made: 'Kézzel készül Bucaramangában · szállítás 7–10 nap' },
+    pdp: { size: 'Méret (EU)', add: 'Kosárba', added: 'Kosárba téve', findSize: 'Bizonytalan vagy? Találd meg a méreted', pick: 'Válassz méretet', payNote: () => 'Utánvéttel is fizethetsz a futárnál', made: 'Kézzel készül Bucaramangában · szállítás 7–10 nap',
+      views: ['Termék', 'Részlet', 'Bőr'], reviewsTitle: 'Vásárlói vélemények', verified: 'Ellenőrzött vásárló', faqTitle: 'Jó tudni',
+      reviews: {
+        trail: [['Kovács A.', 'Budapest', 5, 'A FitFinder EU 43-at ajánlott, pontosan jó lett. Már a Bükkben is kipróbáltam.'], ['Nagy P.', 'Debrecen', 5, 'Vastag bőr, tökéletes varrás. 8 nap alatt megjött, utánvéttel fizettem.']],
+        chelsea: [['Tóth E.', 'Szeged', 5, 'Nagyon puha velúr, könnyű felvenni, az irodában is elegáns.'], ['Szabó M.', 'Pécs', 4, 'Szép csizma. A FitFinder tanácsára fél számmal kisebbet kértem, jól áll.']],
+        ciudad: [['Horváth L.', 'Győr', 5, 'Egyszerű, letisztult és már az első naptól kényelmes.'], ['Varga K.', 'Miskolc', 4, 'Jó városi cipő, pár nap alatt megpuhult.']],
+        giron: [['Kiss D.', 'Eger', 5, 'Igazi cipészmunka. Egy esküvőn többen is megkérdezték, honnan van.'], ['Molnár B.', 'Sopron', 5, 'Gyönyörű lyukminta, méretre pontos.']],
+        barichara: [['Németh Z.', 'Veszprém', 5, 'Nyári kedvencem, a bőr szépen fénylik.'], ['Farkas R.', 'Kecskemét', 4, 'Elegáns mokaszin, a méretcsere gyors és ingyenes volt.']],
+        chicamocha: [['Balogh J.', 'Szombathely', 5, 'Meleg szín, kényelmes sarok, a cipzár miatt könnyű felvenni.'], ['Papp V.', 'Nyíregyháza', 5, 'Tökéletesen illik, látszik rajta a kézi munka.']]
+      } },
 
     bagPanel: {
       title: 'Kosarad', empty: 'A kosarad üres.', remove: 'Törlés', subtotal: 'Részösszeg',
@@ -241,6 +342,50 @@ window.ANDARA = (function () {
       payWith: 'Fizetési mód', place: 'Megrendelem', back: 'Vissza a kosárhoz',
       done: 'Köszönjük! Ez egy bemutató áruház, így nem történt fizetés. Éles rendelésnél most nyomon követési értesítéseket kapnál e-mailben.',
       afterpay: ''
+    },
+
+    checkout: {
+      demo: 'Bemutató áruház egy E-Business egyetemi projekthez. Valódi fizetés nem történik. Tesztkártya: 4242 4242 4242 4242 · kuponkód: ANDARA10.',
+      crumbs: ['Kosár', 'Adatok', 'Szállítás', 'Fizetés'],
+      express: 'Gyors fizetés', or: 'vagy',
+      expressMethods: [['barion', 'Barion'], ['simplepay', 'SimplePay']],
+      contact: 'Kapcsolat', email: 'E-mail', news: 'Kérek e-mailt újdonságokról és ajánlatokról',
+      delivery: 'Szállítás', country: 'Ország/régió', countryName: 'Magyarország',
+      first: 'Keresztnév', last: 'Vezetéknév', nameOrder: ['last', 'first'],
+      address: 'Utca, házszám', apt: 'Emelet, ajtó stb. (nem kötelező)', city: 'Település', region: null, regions: null,
+      post: 'Irányítószám', phone: 'Telefonszám (a futárnak)',
+      demoFill: 'Kitöltés bemutató adatokkal',
+      demoData: { email: 'anna.kovacs@example.hu', first: 'Anna', last: 'Kovács', address: 'Király utca 25.', apt: '2. emelet 4.', city: 'Budapest', region: '', post: '1061', phone: '+36 30 555 0142' },
+      required: 'Kötelező mező', invalidEmail: 'Adj meg érvényes e-mail-címet',
+      toShipping: 'Tovább a szállításhoz', toPayment: 'Tovább a fizetéshez',
+      returnBag: 'Vissza a kosárhoz', returnInfo: 'Vissza az adatokhoz', returnShipping: 'Vissza a szállításhoz',
+      review: { contact: 'Kapcsolat', shipTo: 'Szállítási cím', method: 'Szállítási mód', change: 'Módosítás' },
+      shippingTitle: 'Szállítási mód',
+      rates: [
+        { id: 'home', label: 'Házhozszállítás futárral', note: '7–10 munkanap', price: 0, days: [7, 10] },
+        { id: 'point', label: 'Átvétel csomagponton', note: '7–10 munkanap', price: 0, days: [7, 10] },
+        { id: 'exp', label: 'Expressz futár', note: '4–6 munkanap', price: 2990, days: [4, 6] }
+      ],
+      paymentTitle: 'Fizetés', paymentNote: 'Bemutató pénztár: semmit nem küldünk el és nem tárolunk.',
+      methods: [
+        { id: 'cod', label: 'Utánvét', note: 'Fizess a futárnál készpénzzel vagy kártyával' },
+        { id: 'card', label: 'Bankkártya', note: 'Visa · Mastercard' },
+        { id: 'barion', label: 'Barion', note: '' },
+        { id: 'simplepay', label: 'SimplePay', note: '' }
+      ],
+      card: { number: 'Kártyaszám', exp: 'Lejárat (HH / ÉÉ)', cvc: 'Biztonsági kód', holder: 'Kártyán szereplő név', test: 'Tesztkártya használata',
+        errors: { number: 'Adj meg érvényes kártyaszámot', exp: 'Adj meg érvényes lejárati dátumot', cvc: 'Add meg a 3 vagy 4 jegyű kódot', holder: 'Add meg a kártyán szereplő nevet', declined: 'A kártyát elutasították. Próbálj másikat. (Bemutató elutasító kártya: 4000 0000 0000 0002.)' } },
+      billing: 'A számlázási cím megegyezik a szállítási címmel',
+      afterpayPlan: '', afterpayToday: '', afterpayIn: () => '',
+      redirect: (m) => `A „Fizetés most” után a(z) ${m} oldalán fejeznéd be a fizetést. Ebben a bemutatóban ez a lépés szimulált.`,
+      cod: 'A futárnak fizetsz átvételkor. Az utánvét díja 990 Ft.', codFee: 990,
+      payNow: 'Fizetés most', codNow: 'Megrendelés', processing: 'Rendelés feldolgozása…', processingNote: 'Kérjük, ne zárd be az oldalt.',
+      summary: { show: 'Rendelés összesítő mutatása', hide: 'Rendelés összesítő elrejtése', discount: 'Kuponkód', apply: 'Beváltás', subtotal: 'Részösszeg', shipping: 'Szállítás', next: 'A következő lépésben', free: 'Ingyenes', tax: null, vat: 'Tartalmazza: 27% ÁFA', total: 'Összesen', currency: 'HUF', codFee: 'Utánvét díja', badCode: 'Érvénytelen kuponkód. Próbáld: ANDARA10.', discountLabel: 'Kedvezmény', qty: 'Mennyiség' },
+      taxRate: 0,
+      emptyBag: 'A kosarad üres.', backShop: 'Vissza a boltba',
+      thanks: { order: 'Rendelés', title: (n) => `Köszönjük, ${n}!`, confirmed: 'A rendelésed visszaigazoltuk', confirmedNote: 'Hamarosan visszaigazoló e-mailt kapsz, majd nyomon követési értesítéseket.', details: 'Rendelés részletei', contact: 'Kapcsolat', payment: 'Fizetési mód', address: 'Szállítási cím', billing: 'Számlázási cím', billingSame: 'Megegyezik a szállítási címmel', method: 'Szállítási mód', eta: 'Várható kézbesítés', cont: 'Vásárlás folytatása', help: 'Segítség kell? WhatsApp: +57 300 000 0000', demo: 'Bemutató rendelés: nem történt terhelés.' },
+      policies: ['refund', 'privacy', 'terms'],
+      locale: 'hu-HU'
     },
 
     ai: {
@@ -332,7 +477,18 @@ window.ANDARA = (function () {
           source: 'Forrás: Trade Magazin',
           url: 'https://trademagazin.hu/en/a-magyar-vasarlok-egyre-tudatosabba'
         }
-      ]
+      ],
+      colombia: {
+        kicker: 'Hazai piac',
+        title: 'Kolumbia ma',
+        intro: 'Az export előtt az ANDARA Kolumbiában értékesít. A 2025-ös számok szemléltető jellegűek, ehhez a projekthez készültek.',
+        stats: [['4860', 'eladott pár Kolumbiában 2025-ben'], ['1210 millió COP', 'árbevétel, kb. 300 000 USD'], ['34%', 'a vásárlók közül ennyien vásároltak újra'], ['6,1%', 'visszaküldési arány, főleg méretcsere']],
+        charts: [
+          { title: 'Kolumbia: eladott párok aránya városonként (2025)', bars: [['Bucaramanga', 31], ['Bogotá', 28], ['Medellín', 19], ['Cali', 9], ['Más városok', 13]] },
+          { title: 'Kolumbia: eladott párok aránya csatornánként (2025)', bars: [['Webáruház', 38], ['Instagram és WhatsApp', 33], ['Műhelybolt', 21], ['Kézműves vásárok', 8]] }
+        ],
+        source: 'Szemléltető ANDARA-adatok ehhez az E-Business projekthez, nem valós céges adatok.'
+      }
     },
 
     legal: {
