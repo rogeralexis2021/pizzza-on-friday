@@ -8,11 +8,11 @@ import { join } from 'node:path';
 // Unsplash photo IDs (the part after "photo-" in an images.unsplash.com URL).
 // Several candidates per slot; the first one that downloads wins.
 const PHOTOS = {
-  hero:    { w: 2000, ids: ['1464822759023-fed622ff2c3b', '1506905925346-21bda4d32df4'] },
-  trail:   { w: 1200, ids: ['1520639888713-7851133b1ed0', '1605812860427-4024433a70fd'] },
-  chelsea: { w: 1200, ids: ['1608256246200-53e635b5b65f', '1638247025967-b4e38f787b76'] },
-  ciudad:  { w: 1200, ids: ['1549298916-b41d501d3772', '1525966222134-fcfa99b8ae77'] },
-  about:   { w: 1400, ids: ['1531310197839-ccf54634509e', '1556906781-9a412961c28c'] }
+  hero:    { w: 2000, ids: ['1464822759023-fed622ff2c3b'] },
+  trail:   { w: 1400, ids: ['1638609348722-aa2a3a67db26'] },
+  chelsea: { w: 1400, ids: ['1608629601270-a0007becead3'] },
+  ciudad:  { w: 1400, ids: ['1603808033192-082d6919d3e1'] },
+  about:   { w: 1600, ids: ['1573227896778-8f378c4029d4'] }
 };
 
 const dir = join(process.cwd(), 'public', 'images');
