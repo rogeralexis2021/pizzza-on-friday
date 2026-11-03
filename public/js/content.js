@@ -45,6 +45,14 @@ window.ANDARA = (function () {
         'ANDARA is a Colombian footwear brand. Every pair is cut and stitched by hand from Colombian leather by artisans in Bucaramanga, one of the country\'s oldest shoemaking towns, then shipped straight to you with no middlemen.',
         'Our name joins <em>andar</em>, to walk, with the Andes, where we come from. We use AI so you can buy leather boots online from the other side of the world and get the size right the first time.',
         'We work with two family tanneries in Santander and a workshop of eleven shoemakers. Each pair takes about two days to make.'
+      ],
+      cultureKicker: 'Our roots',
+      cultureTitle: 'Colombian at heart',
+      culture: [
+        ['Frailejón', 'A plant that grows only in the Andean páramo and keeps Colombia\'s water flowing. Our trail boot carries its name.'],
+        ['Bucaramanga', 'The City of Parks, and one of Colombia\'s shoemaking capitals. Generations of family workshops have made shoes here.'],
+        ['Fique', 'The natural fibre of Santander, woven by hand in Curití. Every pair ships in a fique bag made by local weavers.'],
+        ['Tinto at ten', 'Every morning the workshop stops for a small black Colombian coffee. Then back to the bench.']
       ]
     },
 
@@ -147,7 +155,18 @@ window.ANDARA = (function () {
           source: 'Source: Trade Magazin',
           url: 'https://trademagazin.hu/en/a-magyar-vasarlok-egyre-tudatosabba'
         }
-      ]
+      ],
+      colombia: {
+        kicker: 'Home market',
+        title: 'Colombia today',
+        intro: 'Before exporting, ANDARA sells in Colombia. These 2025 figures are illustrative, made up for this project.',
+        stats: [['4,860', 'pairs sold in Colombia in 2025'], ['COP 1,210 M', 'revenue, about USD 300,000'], ['34%', 'of customers bought again'], ['6.1%', 'return rate, mostly size exchanges']],
+        charts: [
+          { title: 'Colombia: share of pairs sold by city (2025)', bars: [['Bucaramanga', 31], ['Bogotá', 28], ['Medellín', 19], ['Cali', 9], ['Other cities', 13]] },
+          { title: 'Colombia: share of pairs sold by channel (2025)', bars: [['Website', 38], ['Instagram and WhatsApp', 33], ['Workshop store', 21], ['Craft fairs', 8]] }
+        ],
+        source: 'Illustrative ANDARA figures for this E-Business project, not real company data.'
+      }
     },
 
     legal: {
@@ -230,6 +249,14 @@ window.ANDARA = (function () {
         'Az ANDARA egy kolumbiai cipőmárka. Minden párat kolumbiai bőrből, kézzel szabnak és varrnak Bucaramanga mesterei, az ország egyik legrégebbi cipészvárosában, majd közvetítők nélkül, egyenesen hozzád szállítjuk.',
         'A nevünk az <em>andar</em> (járni) és az Andok szavakból született. Mesterséges intelligenciával segítünk, hogy online is elsőre eltaláld a méretedet.',
         'Két santanderi családi cserzőüzemmel és egy tizenegy cipészből álló műhellyel dolgozunk. Egy pár elkészítése körülbelül két nap.'
+      ],
+      cultureKicker: 'Gyökereink',
+      cultureTitle: 'Kolumbiai szívvel',
+      culture: [
+        ['Frailejón', 'Csak az andoki páramón élő növény, amely Kolumbia vizét őrzi. Túrabakancsunk róla kapta a nevét.'],
+        ['Bucaramanga', 'A parkok városa és Kolumbia egyik cipőfővárosa. Itt családi műhelyek generációk óta készítenek cipőt.'],
+        ['Fique', 'Santander természetes rostja, amelyet Curitíben kézzel szőnek. Minden pár helyi szövők által készített fique zsákban érkezik.'],
+        ['Tinto tízkor', 'A műhely minden reggel megáll egy kis fekete kolumbiai kávéra. Aztán vissza a munkapadhoz.']
       ]
     },
 
@@ -332,7 +359,18 @@ window.ANDARA = (function () {
           source: 'Forrás: Trade Magazin',
           url: 'https://trademagazin.hu/en/a-magyar-vasarlok-egyre-tudatosabba'
         }
-      ]
+      ],
+      colombia: {
+        kicker: 'Hazai piac',
+        title: 'Kolumbia ma',
+        intro: 'Az export előtt az ANDARA Kolumbiában értékesít. A 2025-ös számok szemléltető jellegűek, ehhez a projekthez készültek.',
+        stats: [['4860', 'eladott pár Kolumbiában 2025-ben'], ['1210 millió COP', 'árbevétel, kb. 300 000 USD'], ['34%', 'a vásárlók közül ennyien vásároltak újra'], ['6,1%', 'visszaküldési arány, főleg méretcsere']],
+        charts: [
+          { title: 'Kolumbia: eladott párok aránya városonként (2025)', bars: [['Bucaramanga', 31], ['Bogotá', 28], ['Medellín', 19], ['Cali', 9], ['Más városok', 13]] },
+          { title: 'Kolumbia: eladott párok aránya csatornánként (2025)', bars: [['Webáruház', 38], ['Instagram és WhatsApp', 33], ['Műhelybolt', 21], ['Kézműves vásárok', 8]] }
+        ],
+        source: 'Szemléltető ANDARA-adatok ehhez az E-Business projekthez, nem valós céges adatok.'
+      }
     },
 
     legal: {

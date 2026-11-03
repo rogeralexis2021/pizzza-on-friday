@@ -152,6 +152,10 @@
         <h2 class="h2"><em>${esc(h.aboutTitle)}</em></h2>
         ${h.about.map(p => `<p>${p}</p>`).join('')}
       </div>
+    </section>
+    <section class="wrap section culture">
+      <div class="section-head"><h2 class="h2"><span class="kicker">${esc(h.cultureKicker)}</span>${esc(h.cultureTitle)}</h2></div>
+      <div class="cols4">${h.culture.map(([t, d]) => `<div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('')}</div>
     </section>`;
   }
 
@@ -270,6 +274,21 @@
         </div>
         <p class="source"><a href="${c.url}" target="_blank" rel="noopener">${esc(c.source)}</a></p>
       </figure>`).join('')}
+    </section>
+    <section class="colombia">
+      <div class="wrap">
+        <header class="colombia-head"><span class="kicker">${esc(m.colombia.kicker)}</span><h2 class="h2">${esc(m.colombia.title)}</h2><p class="muted">${esc(m.colombia.intro)}</p></header>
+        <div class="stats-grid">${m.colombia.stats.map(([a, b]) => `<div><strong>${esc(a)}</strong><span>${esc(b)}</span></div>`).join('')}</div>
+        <div class="charts">${m.colombia.charts.map(c => `
+          <figure class="chart">
+            <figcaption><h3 class="h3">${esc(c.title)}</h3></figcaption>
+            <div class="bars">${c.bars.map(([l, v]) => `
+              <div class="bar"><span class="bar-l">${esc(l)}</span><span class="bar-t"><span style="--w:${v}%"></span></span><span class="bar-v">${num(v)}%</span></div>`).join('')}
+            </div>
+          </figure>`).join('')}
+        </div>
+        <p class="source">${esc(m.colombia.source)}</p>
+      </div>
     </section>`;
   }
 
