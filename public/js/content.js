@@ -24,9 +24,9 @@ window.ANDARA = (function () {
     payments: ['Visa', 'Mastercard', 'Afterpay', 'PayPal', 'Apple Pay', 'Google Pay'],
 
     product: {
-      trail: { type: 'Lace-up leather boot, lug sole', color: 'Cognac, full-grain' },
-      chelsea: { type: 'Pull-on Chelsea boot', color: 'Dark brown, forest-green elastic' },
-      ciudad: { type: 'Low-top leather sneaker', color: 'Tan, stitched cupsole' }
+      trail: { type: 'Lace-up leather boot, brogue detail', color: 'Cognac, full-grain' },
+      chelsea: { type: 'Pull-on suede Chelsea boot', color: 'Tan suede, dark elastic' },
+      ciudad: { type: 'Low-top leather sneaker', color: 'Sand and white, stitched cupsole' }
     },
     sizeRange: 'UK 6–12 · half sizes on request',
     reviewsWord: 'reviews',
@@ -209,9 +209,9 @@ window.ANDARA = (function () {
     payments: ['Utánvét', 'Bankkártya', 'Barion', 'SimplePay'],
 
     product: {
-      trail: { type: 'Fűzős bőrbakancs, profilos talp', color: 'Konyak, színbőr' },
-      chelsea: { type: 'Belebújós Chelsea csizma', color: 'Sötétbarna, erdőzöld gumibetét' },
-      ciudad: { type: 'Alacsony szárú bőr sneaker', color: 'Világosbarna, varrott talp' }
+      trail: { type: 'Fűzős bőrbakancs, lyukmintás díszítéssel', color: 'Konyak, színbőr' },
+      chelsea: { type: 'Belebújós velúr Chelsea csizma', color: 'Világosbarna velúr, sötét gumibetét' },
+      ciudad: { type: 'Alacsony szárú bőr sneaker', color: 'Homokszín és fehér, varrott talp' }
     },
     sizeRange: 'EU 39–46',
     reviewsWord: 'vélemény',

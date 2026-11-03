@@ -4,7 +4,7 @@
 
 const FACTS = {
   nz: [
-    'Products: Frailejón Trail (lace-up leather boot, lug sole, cognac full-grain, NZ$289), Andes Chelsea (pull-on Chelsea boot, dark brown with forest-green elastic, NZ$259), Ciudad Sneaker (low-top leather sneaker, tan, stitched cupsole, NZ$219).',
+    'Products: Frailejón Trail (lace-up leather boot with brogue detail, cognac full-grain, NZ$289), Andes Chelsea (pull-on suede Chelsea boot, tan suede with dark elastic, NZ$259), Ciudad Sneaker (low-top leather sneaker, sand and white, stitched cupsole, NZ$219).',
     'Sizes: UK/AU 6–12, half sizes on request. FitFinder on the AI Proposal page suggests a size from a shoe the customer owns.',
     'Shipping: tracked from Colombia to New Zealand in 8–12 business days. Import GST and duties are calculated at checkout, nothing to pay at the door.',
     'Returns: free size exchange for unworn shoes within 30 days. Faulty products get repair, replacement or refund under the Consumer Guarantees Act.',
@@ -14,7 +14,7 @@ const FACTS = {
     'Contact: WhatsApp +57 300 000 0000, hola@andara.co, a person replies within one business day.'
   ],
   hu: [
-    'Termékek: Frailejón Trail (fűzős bőrbakancs, profilos talp, konyak színbőr, 49 990 Ft), Andes Chelsea (Chelsea csizma, sötétbarna, erdőzöld gumibetét, 42 990 Ft), Ciudad Sneaker (alacsony szárú bőr sneaker, világosbarna, varrott talp, 34 990 Ft).',
+    'Termékek: Frailejón Trail (fűzős bőrbakancs lyukmintás díszítéssel, konyak színbőr, 49 990 Ft), Andes Chelsea (belebújós velúr Chelsea csizma, világosbarna velúr, sötét gumibetét, 42 990 Ft), Ciudad Sneaker (alacsony szárú bőr sneaker, homokszín és fehér, varrott talp, 34 990 Ft).',
     'Méretek: EU 39–46, fél méretek kérésre. Az MI-javaslat oldalon a FitFinder egy meglévő cipő alapján méretet ajánl.',
     'Szállítás: nyomon követhetően Kolumbiából Magyarországra 7–10 munkanap alatt. A vámot és az áfát a pénztárnál kiszámoljuk.',
     'Visszaküldés: 14 napos indoklás nélküli elállási jog online vásárlásnál; viseletlen cipő ingyenes méretcseréje 30 napon belül.',
