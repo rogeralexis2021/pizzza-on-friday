@@ -44,6 +44,10 @@ Or just open `public/index.html` in a browser — everything works, Frai uses it
 
 **GitHub Pages**: Settings → Pages → Source: GitHub Actions. The workflow in `.github/workflows/pages.yml` deploys on push to `main`. (No serverless there, so Frai runs on keyword answers only.)
 
+## Checkout (demo)
+
+Bag with quantities, then a full-page checkout at `#/checkout`: Information → Shipping → Payment → order confirmation, with express buttons, shipping rates, discount code `ANDARA10` and each market's payment methods. Nothing is charged, sent or stored. Test card `4242 4242 4242 4242` is approved; `4000 0000 0000 0002` is declined.
+
 ## Frai, the chatbot
 
 With `ANTHROPIC_API_KEY` set, Frai answers with Claude (model overridable via `FRAI_MODEL`). Without a key, offline, or if the API fails, it answers instantly from keyword rules in `content.js`, so the demo always works. Each reply is labelled `Frai · AI` or `Frai · quick answer`.
